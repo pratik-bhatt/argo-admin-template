@@ -6,7 +6,9 @@ import {Template} from './generate-src';
 
 export function addScripts({entry, type}: {entry: string; type: string}) {
   return updatePackage((npmPackage) => {
-    npmPackage.scripts.server = `argo-admin-cli server --entry="${entry}" --port=39351 --type=${type}`;
+    npmPackage.scripts.server = `argo-admin-cli server --entry="${entry}" --port=39351 --type=${
+      type || 'DEFAULT'
+    }`;
     npmPackage.scripts.build = `argo-admin-cli build --entry="${entry}"`;
     return npmPackage;
   });
